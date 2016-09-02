@@ -1,8 +1,10 @@
 /* This is the StyleCatcher theme addition. Do not remove this block. */
 
+/*
 body {
     font: 13px arial,helvetica,hirakakupro-w3,osaka,"ms pgothic",sans-serif;
 }
+*/
 #header {
     border-top-style: solid;
     border-top-width: 10px;
@@ -78,13 +80,8 @@ body {
 #footer-content, #footer-content a {
     color: #fff;
 }
-.widget-header, .trackbacks-header, .comments-header, .comments-open-header, .archive-header, .search-form-header, .search-results-header {
-    position: relative;
-    width: auto;
-}
 body {
-    background-color: #f3eef3;
-    color: #dddddd;
+    background-color: #000000;
     font-family: trebuchet ms;
 }
 a {
@@ -92,13 +89,6 @@ a {
 }
 a:hover {
     text-decoration: none;
-}
-#container-inner, #content {
-    background-color: #525252;
-}
-#header-inner, #content-inner, #footer-inner {
-    padding-bottom: 0;
-    padding-top: 0;
 }
 #header-inner, #beta-inner, #gamma-inner {
     padding-left: 0;
@@ -113,11 +103,7 @@ a:hover {
     margin-right: 0;
     width: 100%;
 }
-#header-inner, #content-inner, #footer-inner {
-    margin: 0 auto;
-    position: relative;
-    width: 940px;
-}
+
 #header {
     background: #595959 url("header.gif") repeat-x scroll right bottom;
     border-color: #1b1f21;
@@ -168,23 +154,11 @@ a:hover {
     line-height: 0;
     visibility: hidden;
 }
-#header-inner, #content-inner, #footer-inner, .asset-body {
-    height: 1%;
-}
-#group-nav-inner {
-    margin: 0 auto;
-    position: relative;
-    width: 900px;
-}
-.group-button a {
-    background-color: #74abd0;
-    border-color: #fff;
-    color: #fff;
-}
 
-/* end StyleCatcher imports */
-
-body {color: #ffffff}
+body {
+  font-size: 13px;
+  color: #ffffff
+}
 #container-inner, #content {background-color: #000000}
 h2 {
   border-left: 4px solid #0593E2;
