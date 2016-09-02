@@ -1,0 +1,287 @@
+/* This is the StyleCatcher theme addition. Do not remove this block. */
+
+body {
+    font: 13px arial,helvetica,hirakakupro-w3,osaka,"ms pgothic",sans-serif;
+}
+#header {
+    border-top-style: solid;
+    border-top-width: 10px;
+}
+#header-inner {
+    position: relative;
+}
+#header-name {
+    line-height: 1;
+    margin: 0 0 5px;
+}
+#header-description {
+    font-size: 14px;
+    line-height: 1.125;
+    margin: 0;
+}
+#header a {
+    text-decoration: none;
+}
+#header a:hover {
+    text-decoration: underline;
+}
+.asset-name {
+    font-size: 22px;
+    font-weight: bold;
+}
+.asset-name a {
+    text-decoration: none;
+}
+.asset-name a:hover {
+    text-decoration: underline;
+}
+.asset-content {
+    margin: 5px 0;
+}
+.asset-more-link {
+    font-weight: bold;
+}
+.asset-meta {
+    border-top: 1px solid #737373;
+    display: block;
+    font-weight: normal;
+    margin-top: 0.25em;
+    padding-bottom: 0.3em;
+    padding-top: 2px;
+}
+.asset-footer a, .comment-footer a {
+    font-weight: normal;
+}
+.content-nav {
+    margin: 5px 0 10px;
+}
+.archive-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 5px 0 30px;
+}
+.trackbacks-info, .trackback-content, .comment-content, .comments-open-content, .comments-closed {
+    margin: 5px 0;
+}
+.widget-header, .trackbacks-header, .comments-header, .comments-open-header, .archive-header, .search-form-header, .search-results-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px 0;
+}
+.search-results-header {
+    margin-bottom: 0.25em;
+}
+.asset-more-link, .asset-meta, .comment-footer, .trackback-footer, .typelist-thumbnailed {
+    font-size: 11px;
+}
+#footer-content, #footer-content a {
+    color: #fff;
+}
+.widget-header, .trackbacks-header, .comments-header, .comments-open-header, .archive-header, .search-form-header, .search-results-header {
+    position: relative;
+    width: auto;
+}
+body {
+    background-color: #f3eef3;
+    color: #dddddd;
+    font-family: trebuchet ms;
+}
+a {
+    color: #bdd2e0;
+}
+a:hover {
+    text-decoration: none;
+}
+#container-inner, #content {
+    background-color: #525252;
+}
+#header-inner, #content-inner, #footer-inner {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+#header-inner, #beta-inner, #gamma-inner {
+    padding-left: 0;
+    padding-right: 0;
+}
+#content {
+    margin-bottom: 22px;
+    margin-top: 20px;
+}
+#container-inner {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+#header-inner, #content-inner, #footer-inner {
+    margin: 0 auto;
+    position: relative;
+    width: 940px;
+}
+#header {
+    background: #595959 url("header.gif") repeat-x scroll right bottom;
+    border-color: #1b1f21;
+}
+#header a {
+    color: #fff;
+    font-weight: bold;
+}
+#header-content {
+    margin: 30px 0 40px 20px;
+    width: 842px;
+}
+#header-name {
+    color: #fff;
+    font-size: 34px;
+    font-weight: bold;
+}
+#header-description {
+    color: #ccc;
+}
+.asset-name, .asset-name a, .archive-title {
+    color: #c9d5dd;
+}
+.asset-footer, .asset-footer a, .comment-footer, .comment-footer a, .trackback-footer {
+    color: #ddd;
+}
+.asset-footer {
+    border-top-color: #767676;
+}
+.comments-header, .comments-open-header, .trackbacks-header, .archive-header, .search-form-header, .search-results-header {
+    color: #bfbfc0;
+}
+.asset-name a {
+    margin-bottom: 8px;
+}
+.asset-name a:hover {
+    text-decoration: underline;
+}
+.archive-list-item {
+    margin-bottom: 5px;
+}
+.widget-header, .widget-content {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.widget-header {
+    border-color: #737373;
+    border-style: solid;
+    border-width: 0 0 1px;
+    font-family: trebuchet ms;
+    font-size: 14px;
+    margin-bottom: 8px;
+    padding: 0 0 0.3em;
+}
+.widget-header, .widget-header a {
+    color: #ddd;
+    font-weight: normal;
+}
+.widget-content a {
+    color: #ccc;
+}
+#content .widget-powered .widget-content {
+    background-color: #5d5d5d;
+    border: 1px solid #767676;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.widget-header {
+    font-size: 14px;
+}
+.widget-header a {
+    text-decoration: none;
+}
+.widget-header a:hover {
+    text-decoration: underline;
+}
+.widget-content {
+    font-size: 11px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.widget-powered .widget-content {
+    padding: 10px;
+    text-align: center;
+}
+.widget-powered .widget-content a {
+    background: rgba(0, 0, 0, 0) url("mt-powered.png") no-repeat scroll 50% 50%;
+    display: block;
+}
+.widget-powered .widget-content img {
+    visibility: hidden;
+}
+.widget-calendar .widget-content table {
+    font-size: 10px;
+}
+#footer .widget {
+    margin: 10px 0;
+}
+#footer .widget-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+#footer .widget-powered .widget-content {
+    padding: 0;
+    text-align: left;
+}
+#footer .widget-powered .widget-content a {
+    background: transparent none repeat scroll 0 0;
+}
+#footer {
+    background-color: #1b1f21;
+}
+#footer-content {
+    margin: 20px 0;
+}
+#header::after, #header-inner::after, #content::after, #alpha-inner::after, #beta-inner::after, #gamma-inner::after, #footer::after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0.1em;
+    height: 0.1px;
+    line-height: 0;
+    visibility: hidden;
+}
+#header-inner, #content-inner, #footer-inner, .asset-body {
+    height: 1%;
+}
+#group-nav-inner {
+    margin: 0 auto;
+    position: relative;
+    width: 900px;
+}
+.group-button a {
+    background-color: #74abd0;
+    border-color: #fff;
+    color: #fff;
+}
+
+/* end StyleCatcher imports */
+
+body {color: #ffffff}
+#container-inner, #content {background-color: #000000}
+h2 {
+  border-left: 4px solid #0593E2;
+  padding-left: 6px;
+  font-size: 18px;
+}
+h3 {
+  border-left: 4px solid #0593E2;
+  padding-left: 6px;
+  font-size: 15px;
+}
+pre {
+  background-color: #444444;
+  margin-top: 1em;
+  margin-right: 0px;
+  margin-bottom: 1em;
+  margin-left: 0px;
+  padding-top: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
