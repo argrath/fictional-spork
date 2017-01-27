@@ -11,7 +11,7 @@ use Time::Piece;
 
 my @file;
 
-my $fnpat = 'output/%Y/%m/%d-%M.html';
+my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
     {
 	open my $f, '<', $ARGV[0];
