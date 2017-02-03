@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 
-use YAML::Tiny;
 use Text::MultiMarkdown 'markdown';
 
 use Data::Dumper;
@@ -11,24 +10,30 @@ use Time::Piece;
 
 use File::Find;
 
+use Mods;
+
 my @file;
+
+my %metadata;
 
 my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
-#    binmode(STDOUT, ':encoding(Shift_JIS)');
+    my $year = $ARGV[0];
+
     find({
 	wanted => \&findsub,
 	no_chdir => 1}, 'entry');
+    my (@list) = extract(\&filter, $year);
+    output($year, \@list);
     exit;
 }
+
 sub findsub {
     my $path = $File::Find::name;
     if($path !~ /\.txt$/){return;}
-    print $path . "\n";
     my (@file) = load_file($path);
-    print $file[0] . "\n";
-    my $conf = read_meta($file[0]);
-    print $conf->{title} . "\n";
+    my $meta = Mods::read_meta($file[0]);
+    $metadata{$meta->{date}} = $meta;
 }
 
 sub load_file {
@@ -48,62 +53,49 @@ sub load_file {
     return @file;
 }
 
-sub read_meta {
-    my %ret;
-    for(@_){
-	if(/([a-z]+): *(.+)/){
-	    $ret{$1} = $2;
-	}
-    }
-    return \%ret;
+sub filter {
+    my ($meta, $args) = @_;
+
+    if($meta->{date} !~ /^$args/){return 0;}
+    if($meta->{status} ne 'publish'){return 0;}
+    return 1;
 }
 
-{
-    {
-	open my $f, '<', $ARGV[0];
-	my $s = '';
-	while(<$f>){
-	    if(/---\n/){
-		push @file, $s;
-		$s = '';
-		next;
-	    }
-	    $s .= $_;
-	}
-	push @file, $s;
+sub extract {
+    my ($filter, $args) = @_;
+    my @ret;
+
+    for(reverse sort keys %metadata){
+	my $meta = $metadata{$_};
+	if(!&$filter($meta, $args)){next;}
+	my $url = entry_url($meta->{date});
+	push @ret, {
+	    date => $meta->{date},
+	    link => $url,
+	    title => $meta->{title},
+	};
     }
-    my $yaml = YAML::Tiny->read_string($file[0]);
+
+    return @ret;
+}
+
+sub entry_url {
+    my $linkpat = '%m/%d-%H.html';
+
+    my $date = shift;
+    my $dateobj = Time::Piece->strptime($date, '%Y-%m-%d %H:%M:%S');
+    return $dateobj->strftime($linkpat);
+}
+
+sub output {
+    my ($year, $list) = @_;
     my %vars;
 
-    my $html1 = markdown($file[1]);
+    $vars{title} = 'Year ' . $year;
+    $vars{csslink} = '../st.css';
+    $vars{itemlist} = $list;
 
-    $vars{text} = $html1;
-
-    my $html2 = markdown($file[2]);
-
-    $vars{textmore} = $html2;
-
-    $vars{title} = $yaml->[0]->{title};
-    {
-	my (@tags) = split / /, $yaml->[0]->{tags};
-	my @tagstr = ();
-	for(@tags){
-	    my $tag = lc($_);
-	    push @tagstr, sprintf('<a href="../../%s">%s</a>', $tag, $tag);
-	}
-	$vars{tags} = join(', ', @tagstr);
-    }
-    my $outfn;
-    {
-	my $date = $yaml->[0]->{date};
-	my $dateobj = Time::Piece->strptime($date, '%Y-%m-%d %H:%M:%S');
-	$vars{date} = $date;
-	substr($date, 10, 1) = 'T';
-	$date .= '+0900';
-	$vars{w3cdate} = $date;
-	$outfn = $dateobj->strftime($fnpat);
-    }
-
+    my $outfn = sprintf('output/%s/index.html', $year);
     my $tt = new Template;
-    $tt->process('tmpl/entry.tt.html', \%vars, $outfn);
+    $tt->process('tmpl/summary.tt.html', \%vars, $outfn);
 }
