@@ -1,4 +1,4 @@
-package Mods;
+package FictionalSpork::Mods;
 
 sub load_file {
     my (@file);
