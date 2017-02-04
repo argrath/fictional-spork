@@ -43,7 +43,7 @@ my $fnpat = 'output/%Y/%m/%d-%H.html';
 	my @tagstr = ();
 	for(@tags){
 	    my $tag = lc($_);
-	    push @tagstr, sprintf('<a href="../../%s">%s</a>', $tag, $tag);
+	    push @tagstr, sprintf('<a href="../../tags/%s.html">%s</a>', $tag, $tag);
 	}
 	$vars{tags} = join(', ', @tagstr);
     }
