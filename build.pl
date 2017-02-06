@@ -19,11 +19,14 @@ use FictionalSpork::Mods;
     my $meta = FictionalSpork::Mods::read_meta($file[0]);
     my %vars;
 
-    my $html1 = markdown($file[1]);
+    $file[2] =~ s/\n([ \t]*)```([a-z]*)\n/\n$1```\n/g;
+    my $html1 = make_markdown($file[1]);
 
     $vars{text} = $html1;
 
-    my $html2 = markdown($file[2]);
+#    $file[2] =~ s{\n```([a-z]*)\n(.+?)\n```\n}{<pre><code>$2</code></pre>}sg;
+#    $file[2] =~ s/\n([ \t]*)```([a-z]*)\n/\n$1```\n/g;
+    my $html2 = make_markdown($file[2]);
 
     $vars{textmore} = $html2;
 
@@ -53,4 +56,14 @@ use FictionalSpork::Mods;
 
     my $tt = new Template;
     $tt->process('tmpl/entry.tt.html', \%vars, $outfn);
+}
+
+sub make_markdown {
+    my $md = shift;
+
+    $md =~ s/\n([ \t]*)```([a-z]*)\n/\n$1```\n/g;
+    my $html = markdown($md);
+    $html =~ s{\n<p><code>\n}{\n<pre><code>}sg;
+    $html =~ s{\n</code></p>\n}{\n</code></pre>\n}sg;
+    return $html;
 }
