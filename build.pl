@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+use lib 'lib';
+
 use YAML::Tiny;
 use Text::MultiMarkdown 'markdown';
 
@@ -9,24 +11,12 @@ use Data::Dumper;
 use Template;
 use Time::Piece;
 
-my @file;
+use FictionalSpork::Mods;
 
-my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
-    {
-	open my $f, '<', $ARGV[0];
-	my $s = '';
-	while(<$f>){
-	    if(/---\n/){
-		push @file, $s;
-		$s = '';
-		next;
-	    }
-	    $s .= $_;
-	}
-	push @file, $s;
-    }
-    my $yaml = YAML::Tiny->read_string($file[0]);
+    my (@file) = FictionalSpork::Mods::load_file($ARGV[0]);
+
+    my $meta = FictionalSpork::Mods::read_meta($file[0]);
     my %vars;
 
     my $html1 = markdown($file[1]);
@@ -37,9 +27,9 @@ my $fnpat = 'output/%Y/%m/%d-%H.html';
 
     $vars{textmore} = $html2;
 
-    $vars{title} = $yaml->[0]->{title};
+    $vars{title} = $meta->{title};
     {
-	my (@tags) = split / /, $yaml->[0]->{tags};
+	my (@tags) = split / /, $meta->{tags};
 	my @tagstr = ();
 	for(@tags){
 	    my $tag = lc($_);
@@ -49,13 +39,16 @@ my $fnpat = 'output/%Y/%m/%d-%H.html';
     }
     my $outfn;
     {
-	my $date = $yaml->[0]->{date};
-	my $dateobj = Time::Piece->strptime($date, '%Y-%m-%d %H:%M:%S');
+	my $date = $meta->{date};
 	$vars{date} = $date;
+
+	my $fnpat = 'output/%Y/%m/%d-%H.html';
+	$outfn = FictionalSpork::Mods::entry_url($date, $fnpat);
+
 	substr($date, 10, 1) = 'T';
 	$date .= '+0900';
 	$vars{w3cdate} = $date;
-	$outfn = $dateobj->strftime($fnpat);
+
     }
 
     my $tt = new Template;

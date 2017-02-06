@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+use lib 'lib';
+
 use Text::MultiMarkdown 'markdown';
 
 use Data::Dumper;
@@ -8,8 +10,7 @@ use Data::Dumper;
 use Template;
 use Time::Piece;
 
-use Summary;
-use Mods;
+use FictionalSpork::Summary;
 
 my @file;
 
@@ -17,9 +18,9 @@ my %metadata;
 
 my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
-    %metadata = %{&Summary::find_entry()};
+    %metadata = %{&FictionalSpork::Summary::find_entry()};
 
-    my (@list) = Summary::extract('%Y/%m/%d-%H.html', \&filter);
+    my (@list) = FictionalSpork::Summary::extract('%Y/%m/%d-%H.html', \&filter);
     output(\@list);
     exit;
 }
