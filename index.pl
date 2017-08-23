@@ -10,6 +10,8 @@ use Data::Dumper;
 use Template;
 use Time::Piece;
 
+use XML::FeedPP;
+
 use FictionalSpork::Summary;
 
 my @file;
@@ -22,6 +24,7 @@ my $fnpat = 'output/%Y/%m/%d-%H.html';
 
     my (@list) = FictionalSpork::Summary::extract('%Y/%m/%d-%H.html', \&filter);
     output(\@list);
+    atom(@list);
     exit;
 }
 
@@ -43,4 +46,31 @@ sub output {
     my $outfn = 'output/index.html';
     my $tt = new Template;
     $tt->process('tmpl/summary.tt.html', \%vars, $outfn);
+}
+
+sub atom {
+    my (@list) = @_;
+
+    my $f = XML::FeedPP::Atom::Atom10->new(
+	title => '王様の耳は驢馬の耳(別館)',
+	description => 'よしなしごとをかきつくる',
+	pubDate => time(),
+	link => 'https://argrath.ub32.org/annex/',
+	copyright => 'SHIRAKATA Kentaro',
+	lang => 'ja',
+	);
+
+    for(@list){
+	my $d = $_->{date};
+	$d =~ s/ /T/;
+	$d .= '+09:00';
+
+	$f->add_item(
+	    title => $_->{title},
+	    pubDate => $d,
+	    link => $_->{link},
+	    );
+    }
+
+    $f->to_file('output/atom.xml');
 }
