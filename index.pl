@@ -18,6 +18,8 @@ my @file;
 
 my %metadata;
 
+my $siteurl = 'https://argrath.ub32.org/annex/';
+
 my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
     %metadata = %{&FictionalSpork::Summary::find_entry()};
@@ -55,7 +57,7 @@ sub atom {
 	title => '王様の耳は驢馬の耳(別館)',
 	description => 'よしなしごとをかきつくる',
 	pubDate => time(),
-	link => 'https://argrath.ub32.org/annex/',
+	link => $siteurl,
 	copyright => 'SHIRAKATA Kentaro',
 	lang => 'ja',
 	);
@@ -68,7 +70,7 @@ sub atom {
 	$f->add_item(
 	    title => $_->{title},
 	    pubDate => $d,
-	    link => $_->{link},
+	    link => $siteurl . $_->{link},
 	    );
     }
 
