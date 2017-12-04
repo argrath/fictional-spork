@@ -12,11 +12,14 @@ use Template;
 use Time::Piece;
 
 use FictionalSpork::Mods;
+use FictionalSpork::Entry;
 
 {
-    my (@file) = FictionalSpork::Mods::load_file($ARGV[0]);
+    my $entry = FictionalSpork::Entry->new($ARGV[0]);
+    my (@file) = @{$entry->file};
 
-    my $meta = FictionalSpork::Mods::read_meta($file[0]);
+    my $meta = $entry->meta;
+
     my %vars;
 
     $file[2] =~ s/\n([ \t]*)```([a-z]*)\n/\n$1```\n/g;
