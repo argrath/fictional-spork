@@ -1,0 +1,30 @@
+use strict;
+use warnings;
+
+{
+    my $name = $ARGV[0];
+
+    my ($y, $m, $d, $h) = unpack('A4A2A2A2', $name);
+
+    mkdir 'entry/' . $y;
+
+    my $fn = sprintf('entry/%s/%s%s%s.txt', $y, $m, $d, $h);
+
+    if(-e $fn){
+	printf "$fn already exist.\n";
+	exit;
+    }
+
+    open my $f, '>', $fn or die;
+
+    print $f <<"EOF"
+title: ...
+tags: ...
+date: $y-$m-$d $h:00:00
+style: markdown
+status: draft
+---
+EOF
+;
+    close $f or die;
+}
