@@ -39,7 +39,11 @@ sub _fn {
 sub load_file {
     my (@file);
     my ($fn) = @_;
-    open my $f, '<', _fn($fn) or return undef;
+
+    if($fn !~ /txt$/){
+	$fn = _fn($fn);
+    }
+    open my $f, '<', $fn or return undef;
     my $s = '';
     while(<$f>){
 	if(/---\n/){

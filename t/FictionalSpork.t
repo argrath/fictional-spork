@@ -29,6 +29,9 @@ chdir $FindBin::Bin;
     my $entry = FictionalSpork::Entry->new('2017010704');
     isnt($entry, undef, 'load entry');
 
+    $entry = FictionalSpork::Entry->new('entry/2017/010704.txt');
+    isnt($entry, undef, 'load entry with path');
+
     my $file = $entry->file;
     is($#$file, 2, 'entry count');
 }
