@@ -5,6 +5,7 @@ use warnings;
 use File::Find;
 
 use FictionalSpork::Mods;
+use FictionalSpork::Entry;
 
 my %metadata;
 
@@ -18,8 +19,8 @@ sub find_entry {
 sub findsub {
     my $path = $File::Find::name;
     if($path !~ /\.txt$/){return;}
-    my (@file) = FictionalSpork::Mods::load_file($path);
-    my $meta = FictionalSpork::Mods::read_meta($file[0]);
+    my $entry = FictionalSpork::Entry->new($path);
+    my $meta = $entry->meta;
     $metadata{$meta->{date}} = $meta;
 }
 
