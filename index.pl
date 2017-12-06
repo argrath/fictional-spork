@@ -16,13 +16,12 @@ use FictionalSpork::Summary;
 
 my @file;
 
-my %metadata;
-
 my $siteurl = 'https://argrath.ub32.org/annex/';
 
 my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
-    %metadata = %{&FictionalSpork::Summary::find_entry()};
+    my $summary = FictionalSpork::Summary->new();
+    $summary->find_entry();
 
     my (@list) = FictionalSpork::Summary::extract('%Y/%m/%d-%H.html', \&filter);
     output(\@list);

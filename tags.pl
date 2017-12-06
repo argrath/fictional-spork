@@ -20,7 +20,8 @@ my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
 #    my $tags = $ARGV[0];
 
-    %metadata = %{&FictionalSpork::Summary::find_entry()};
+    my $summary = FictionalSpork::Summary->new();
+    %metadata = %{$summary->find_entry()};
 
     my (@taglist) = listup(\%metadata);
 

@@ -14,13 +14,12 @@ use FictionalSpork::Summary;
 
 my @file;
 
-my %metadata;
-
 my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
     my $year = $ARGV[0];
 
-    %metadata = %{&FictionalSpork::Summary::find_entry()};
+    my $summary = FictionalSpork::Summary->new();
+    $summary->find_entry();
 
     my (@list) = FictionalSpork::Summary::extract('%m/%d-%H.html', \&filter, $year);
     output($year, \@list);

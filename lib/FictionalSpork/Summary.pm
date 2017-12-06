@@ -9,14 +9,22 @@ use FictionalSpork::Entry;
 
 my %metadata;
 
+sub new {
+    my $class = shift;
+    my $self = {};
+    bless $self, $class;
+
+    return $self;
+}
+
 sub find_entry {
     find({
-	wanted => \&findsub,
+	wanted => \&_findsub,
 	no_chdir => 1}, 'entry');
     return \%metadata;
 }
 
-sub findsub {
+sub _findsub {
     my $path = $File::Find::name;
     if($path !~ /\.txt$/){return;}
     my $entry = FictionalSpork::Entry->new($path);
