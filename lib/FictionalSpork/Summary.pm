@@ -44,6 +44,7 @@ sub extract {
 	    date => $meta->{date},
 	    link => $url,
 	    title => $meta->{title},
+	    w3cdate => $meta->{w3cdate},
 	};
     }
 

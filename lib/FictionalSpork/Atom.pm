@@ -20,13 +20,9 @@ sub atom {
 	);
 
     for(@list){
-	my $d = $_->{date};
-	$d =~ s/ /T/;
-	$d .= '+09:00';
-
 	$f->add_item(
 	    title => $_->{title},
-	    pubDate => $d,
+	    pubDate => $_->{w3cdate},
 	    link => $siteurl . $_->{link},
 	    );
     }

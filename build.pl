@@ -35,6 +35,7 @@ use FictionalSpork::Tag;
     $vars{textmore} = $html2;
 
     $vars{title} = $meta->{title};
+    $vars{w3cdate} = $meta->{w3cdate};
     {
 	my (@tags) = split / /, $meta->{tags};
 	my @tagstr = ();
@@ -51,11 +52,6 @@ use FictionalSpork::Tag;
 
 	my $fnpat = 'output/%Y/%m/%d-%H.html';
 	$outfn = FictionalSpork::Mods::entry_url($date, $fnpat);
-
-	substr($date, 10, 1) = 'T';
-	$date .= '+0900';
-	$vars{w3cdate} = $date;
-
     }
 
     my $tt = new Template;

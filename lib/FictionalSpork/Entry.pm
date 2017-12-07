@@ -65,6 +65,14 @@ sub read_meta {
 	    $ret{$1} = $2;
 	}
     }
+
+    {
+	my $date = $ret{date};
+	substr($date, 10, 1) = 'T';
+	$date .= '+09:00';
+	$ret{w3cdate} = $date;
+    }
+
     return \%ret;
 }
 
