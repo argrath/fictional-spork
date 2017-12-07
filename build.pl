@@ -13,6 +13,7 @@ use Time::Piece;
 
 use FictionalSpork::Mods;
 use FictionalSpork::Entry;
+use FictionalSpork::Tag;
 
 {
     my $entry = FictionalSpork::Entry->new($ARGV[0]);
@@ -38,8 +39,8 @@ use FictionalSpork::Entry;
 	my (@tags) = split / /, $meta->{tags};
 	my @tagstr = ();
 	for(@tags){
-	    my $tag = lc($_);
-	    push @tagstr, sprintf('<a href="../../tags/%s.html">%s</a>', $tag, $tag);
+	    my $tag = FictionalSpork::Tag->new($_);
+	    push @tagstr, $tag->url;
 	}
 	$vars{tags} = join(', ', @tagstr);
     }
