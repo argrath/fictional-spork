@@ -6,3 +6,6 @@ blib/
 fs.yml
 Build.bat
 Build
+*.bat
+MYMETA.yml
+MYMETA.json
