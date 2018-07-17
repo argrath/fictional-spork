@@ -12,11 +12,14 @@ sub load {
     if(!defined $fn){
         $fn = 'fs.yml';
     }
-	my $data = YAML::Tiny->read($fn);
-	$conf = $data->[0];
+    my $data = YAML::Tiny->read($fn);
+    $conf = $data->[0];
 }
 
 sub get {
+    if(!defined $conf){
+        load();
+    }
     return $conf;
 }
 

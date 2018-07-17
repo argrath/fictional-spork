@@ -18,7 +18,6 @@ my @file;
 
 my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
-    FictionalSpork::Conf::load();
     my $summary = FictionalSpork::Summary->new();
     $summary->find_entry();
 
