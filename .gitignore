@@ -4,3 +4,5 @@ output/
 _build/
 blib/
 fs.yml
+Build.bat
+Build
