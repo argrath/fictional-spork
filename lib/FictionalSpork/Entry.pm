@@ -43,7 +43,7 @@ sub load_file {
     if($fn !~ /txt$/){
 	$fn = _fn($fn);
     }
-    open my $f, '<', $fn or return undef;
+    open my $f, '<:encoding(utf-8)', $fn or return undef;
     my $s = '';
     while(<$f>){
 	if(/---\n/){

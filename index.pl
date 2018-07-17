@@ -12,11 +12,13 @@ use Time::Piece;
 
 use FictionalSpork::Summary;
 use FictionalSpork::Atom;
+use FictionalSpork::Conf;
 
 my @file;
 
 my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
+    FictionalSpork::Conf::load();
     my $summary = FictionalSpork::Summary->new();
     $summary->find_entry();
 
@@ -38,11 +40,14 @@ sub output {
     my ($list) = @_;
     my %vars;
 
+    my $conf = FictionalSpork::Conf::get();
+
+    $vars{blogtitle} = $conf->{title};
     $vars{title} = 'Index';
     $vars{csslink} = 'st.css';
     $vars{itemlist} = $list;
 
     my $outfn = 'output/index.html';
     my $tt = new Template;
-    $tt->process('tmpl/summary.tt.html', \%vars, $outfn);
+    $tt->process('tmpl/summary.tt.html', \%vars, $outfn, 'binmode' => ':utf8');
 }

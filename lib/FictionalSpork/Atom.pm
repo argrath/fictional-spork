@@ -3,19 +3,23 @@ package FictionalSpork::Atom;
 use strict;
 use warnings;
 
+use FictionalSpork::Conf;
+
 use XML::FeedPP;
 
 my $siteurl = 'https://argrath.ub32.org/annex/';
 
 sub atom {
-    my (@list) = @_;
+	my (@list) = @_;
+
+	my $conf = FictionalSpork::Conf::get();
 
     my $f = XML::FeedPP::Atom::Atom10->new(
-	title => '王様の耳は驢馬の耳(別館)',
-	description => 'よしなしごとをかきつくる',
+	title => $conf->{title},
+	description => $conf->{description},
 	pubDate => time(),
 	link => $siteurl,
-	copyright => 'SHIRAKATA Kentaro',
+	copyright => $conf->{copyright},
 	lang => 'ja',
 	);
 
