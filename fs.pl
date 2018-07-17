@@ -14,8 +14,11 @@ use FictionalSpork::Mods;
 use FictionalSpork::Entry;
 use FictionalSpork::Tag;
 use FictionalSpork::Markdown;
+use FictionalSpork::Conf;
 
 {
+    my $conf = FictionalSpork::Conf::get();
+
     my $entry = FictionalSpork::Entry->new($ARGV[0]);
     my (@file) = @{$entry->file};
 
@@ -34,6 +37,7 @@ use FictionalSpork::Markdown;
 
     $vars{textmore} = $html2;
 
+    $vars{blogtitle} = $conf->{title};
     $vars{title} = $meta->{title};
     $vars{w3cdate} = $meta->{w3cdate};
     {
@@ -55,5 +59,5 @@ use FictionalSpork::Markdown;
     }
 
     my $tt = new Template;
-    $tt->process('tmpl/entry.tt.html', \%vars, $outfn);
+    $tt->process('tmpl/entry.tt.html', \%vars, $outfn, 'binmode' => ':utf8');
 }
