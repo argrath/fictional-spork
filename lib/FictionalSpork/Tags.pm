@@ -3,6 +3,8 @@ package FictionalSpork::Tags;
 use warnings;
 use strict;
 
+use FictionalSpork::Tag;
+
 sub new {
     my $class = shift;
     my $self = {};
@@ -10,7 +12,7 @@ sub new {
 
     my $tags = shift;
     {
-	my (@tags) = split / /, $meta->{tags};
+	my (@tags) = split / /, $tags;
 	my @tagobj = ();
 	for(@tags){
 	    my $tag = FictionalSpork::Tag->new($_);
