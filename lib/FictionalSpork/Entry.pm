@@ -10,7 +10,13 @@ sub new {
 
     $self->{id} = shift;
 
-    my $file = load_file($self->{id}) or return undef;
+    my $fn = $self->{id};
+    if($fn !~ /txt$/){
+	$fn = _fn($fn);
+    }
+    $self->{fn} = $fn;
+
+    my $file = load_file($self->{fn}) or return undef;
     $self->{file} = $file;
 
     my $meta = read_meta($$file[0]);
@@ -40,9 +46,6 @@ sub load_file {
     my (@file);
     my ($fn) = @_;
 
-    if($fn !~ /txt$/){
-	$fn = _fn($fn);
-    }
     open my $f, '<:encoding(utf-8)', $fn or return undef;
     my $s = '';
     while(<$f>){
