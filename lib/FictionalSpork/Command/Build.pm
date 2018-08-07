@@ -23,10 +23,17 @@ sub build {
 
     my $conf = FictionalSpork::Conf::get();
 
+    print "Processing: $fn\n";
+
     my $entry = FictionalSpork::Entry->new($fn);
     my (@file) = @{$entry->file};
 
     my $meta = $entry->meta;
+
+    if($meta->{status} ne 'publish'){
+        print "Skip.\n";
+        return;
+    }
 
     my %vars;
 
