@@ -8,7 +8,7 @@ use YAML::Tiny;
 my $conf;
 
 sub load {
-    my $fn = shift;
+    my $fn = $ENV{'FS_CONF'};
     if(!defined $fn){
         $fn = 'fs.yml';
     }
