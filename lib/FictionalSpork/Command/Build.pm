@@ -26,6 +26,10 @@ sub build {
     print "Processing: $fn\n";
 
     my $entry = FictionalSpork::Entry->new($fn);
+    if(!defined $entry){
+        print "Not found: $fn\n";
+        return;
+    }
     my (@file) = @{$entry->file};
 
     my $meta = $entry->meta;
