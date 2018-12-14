@@ -9,3 +9,4 @@ Build
 *.bat
 MYMETA.yml
 MYMETA.json
+cover_db/
