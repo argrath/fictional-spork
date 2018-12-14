@@ -44,5 +44,5 @@ sub output {
 
     my $outfn = sprintf('output/%s/index.html', $year);
     my $tt = new Template;
-    $tt->process('tmpl/summary.tt.html', \%vars, $outfn);
+    $tt->process('tmpl/summary.tt.html', \%vars, $outfn, 'binmode' => ':utf8');
 }
