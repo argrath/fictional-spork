@@ -18,6 +18,11 @@ my $fnpat = 'output/%Y/%m/%d-%H.html';
 {
     my $year = $ARGV[0];
 
+    if(!defined $year){
+        print "Need specifing year.";
+        exit;
+    }
+
     my $summary = FictionalSpork::Summary->new();
     $summary->find_entry();
 
