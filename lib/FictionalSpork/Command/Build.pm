@@ -15,6 +15,7 @@ use Time::Piece;
 use FictionalSpork::Mods;
 use FictionalSpork::Entry;
 use FictionalSpork::Tag;
+use FictionalSpork::Tags;
 use FictionalSpork::Markdown;
 use FictionalSpork::Conf;
 
@@ -55,15 +56,12 @@ sub build {
     $vars{blogtitle} = $conf->{title};
     $vars{title} = $meta->{title};
     $vars{w3cdate} = $meta->{w3cdate};
+
     {
-	my (@tags) = split / /, $meta->{tags};
-	my @tagstr = ();
-	for(@tags){
-	    my $tag = FictionalSpork::Tag->new($_);
-	    push @tagstr, $tag->url;
-	}
-	$vars{tags} = join(', ', @tagstr);
+        my $tags = FictionalSpork::Tags->new($meta->{tags});
+        $vars{tags} = $tags->to_string;
     }
+
     my $outfn;
     {
 	my $date = $meta->{date};
