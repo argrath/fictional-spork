@@ -13,6 +13,15 @@ chdir $FindBin::Bin;
 BEGIN { use_ok('FictionalSpork::Conf') };
 
 {
+    my $conffn = FictionalSpork::Conf::_conffn();
+    is($conffn, 'fs.yml', 'default fs.yml');
+
+    $ENV{'FS_CONF'} = 'fs.test.yml';
+    $conffn = FictionalSpork::Conf::_conffn();
+    is($conffn, 'fs.test.yml', 'custom fs.yml');
+}
+
+{
     $ENV{'FS_CONF'} = 'fs.test.yml';
     my $conf = FictionalSpork::Conf::load();
     is($conf->{title}, 'テストタイトル', 'load yml');

@@ -7,11 +7,17 @@ use YAML::Tiny;
 
 my $conf;
 
-sub load {
+sub _conffn {
     my $fn = $ENV{'FS_CONF'};
     if(!defined $fn){
         $fn = 'fs.yml';
     }
+
+    return $fn;
+}
+
+sub load {
+    my $fn = _conffn();
     my $data = YAML::Tiny->read($fn);
     $conf = $data->[0];
 }
