@@ -15,8 +15,8 @@ sub create {
     my $fn = sprintf('entry/%s/%s%s%s.txt', $y, $m, $d, $h);
 
     if(-e $fn){
-	printf "$fn already exist.\n";
-	exit;
+        printf "$fn already exist.\n";
+        return 1;
     }
 
     open my $f, '>', $fn or die;
