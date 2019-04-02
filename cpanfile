@@ -3,7 +3,11 @@ on 'configure' => sub {
   requires 'Module::Build::Pluggable::CPANfile', '0.04';
 };
 
-requires 'YAML-Tiny';
+on 'build' => sub {
+  requires 'Module::Build::Pluggable::CPANfile', '0.04';
+};
+
+requires 'YAML::Tiny';
 requires 'Template';
-requires 'Text-MultiMarkdown';
-requires 'XML-FeedPP';
+requires 'Text::MultiMarkdown';
+requires 'XML::FeedPP';
