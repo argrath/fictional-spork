@@ -1,0 +1,23 @@
+title: Tomcat8ではjavaURLContextFactoryクラスはcatalina.jarにある
+tags: java
+date: 2017-01-07 04:00:00
+style: markdown
+status: publish
+---
+## まとめ
+JNDI関係を単体テストしたい時に使うjavaURLContextFactoryクラスはTomcat8ではcatalina.jarにあるよ、という話。
+---
+## 詳細
+JNDI関係を単体テストしたい時:
+
+```java
+System.setProperty(Context.INITIAL_CONTEXT_FACTORY, javaURLContextFactory.class.getName());
+System.setProperty(Context.URL_PKG_PREFIXES, "org.apache.naming");
+InitialContext ic = new InitialContext();
+```
+
+みたいなコードを書くことになるのだけど、ここで使われているjavaURLContextFactoryクラスがTomcat8ではどこにあるのかわからない。
+Tomcat5.5とかだとcommon/lib/naming-factory.jarにあったりするみたいなんだけど、Tomcat8だとそもそもcommonディレクトリがない。
+
+こういう時に効率的に探す方法がよく分かってないのだけどひたすらjarを展開してcatalina.jarに含まれているのを発見したのでこれをビルドパスに含めて解決。
+将来のためにメモしておく。
