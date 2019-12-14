@@ -12,13 +12,13 @@ sub new {
 
     my $tags = shift;
     {
-	my (@tags) = split / /, $tags;
-	my @tagobj = ();
-	for(@tags){
-	    my $tag = FictionalSpork::Tag->new($_);
-	    push @tagobj, $tag;
-	}
-	$self->{tags} = \@tagobj;
+        my (@tags) = split / /, $tags;
+        my @tagobj = ();
+        for(@tags){
+            my $tag = FictionalSpork::Tag->new($_);
+            push @tagobj, $tag;
+        }
+        $self->{tags} = \@tagobj;
     }
 
     return $self;
@@ -30,7 +30,7 @@ sub to_string {
 
     my @tagstr = ();
     for(@{$self->{tags}}){
-	push @tagstr, $_->url;
+        push @tagstr, $_->url;
     }
     return join(', ', @tagstr);
 }

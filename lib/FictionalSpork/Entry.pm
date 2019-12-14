@@ -12,7 +12,7 @@ sub new {
 
     my $fn = $self->{id};
     if($fn !~ /txt$/){
-	$fn = _fn($fn);
+        $fn = _fn($fn);
     }
     $self->{fn} = $fn;
 
@@ -49,12 +49,12 @@ sub load_file {
     open my $f, '<:encoding(utf-8)', $fn or return undef;
     my $s = '';
     while(<$f>){
-	if(/---\n/){
-	    push @file, $s;
-	    $s = '';
-	    next;
-	}
-	$s .= $_;
+        if(/---\n/){
+            push @file, $s;
+            $s = '';
+            next;
+        }
+        $s .= $_;
     }
     push @file, $s;
     return \@file;
@@ -64,16 +64,16 @@ sub read_meta {
     my $data = shift;
     my %ret;
     for(split /\n/, $data){
-	if(/([a-z]+): *(.+)/){
-	    $ret{$1} = $2;
-	}
+        if(/([a-z]+): *(.+)/){
+            $ret{$1} = $2;
+        }
     }
 
     {
-	my $date = $ret{date};
-	substr($date, 10, 1) = 'T';
-	$date .= '+09:00';
-	$ret{w3cdate} = $date;
+        my $date = $ret{date};
+        substr($date, 10, 1) = 'T';
+        $date .= '+09:00';
+        $ret{w3cdate} = $date;
     }
 
     return \%ret;

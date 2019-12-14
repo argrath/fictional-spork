@@ -19,8 +19,8 @@ sub new {
 
 sub find_entry {
     find({
-	wanted => \&_findsub,
-	no_chdir => 1}, 'entry');
+        wanted => \&_findsub,
+        no_chdir => 1}, 'entry');
     return \%metadata;
 }
 
@@ -37,15 +37,15 @@ sub extract {
     my @ret;
 
     for(reverse sort keys %metadata){
-	my $meta = $metadata{$_};
-	if(!&$filter($meta, $args)){next;}
-	my $url = FictionalSpork::Mods::entry_url($meta->{date}, $linkpat);
-	push @ret, {
-	    date => $meta->{date},
-	    link => $url,
-	    title => $meta->{title},
-	    w3cdate => $meta->{w3cdate},
-	};
+        my $meta = $metadata{$_};
+        if(!&$filter($meta, $args)){next;}
+        my $url = FictionalSpork::Mods::entry_url($meta->{date}, $linkpat);
+        push @ret, {
+            date => $meta->{date},
+            link => $url,
+            title => $meta->{title},
+            w3cdate => $meta->{w3cdate},
+        };
     }
 
     return @ret;

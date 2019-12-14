@@ -64,11 +64,11 @@ sub build {
 
     my $outfn;
     {
-	my $date = $meta->{date};
-	$vars{date} = $date;
+        my $date = $meta->{date};
+        $vars{date} = $date;
 
         my $fnpat = $conf->{entrypattern};
-	$outfn = FictionalSpork::Mods::entry_url($date, $fnpat);
+        $outfn = FictionalSpork::Mods::entry_url($date, $fnpat);
     }
 
     my $tt = new Template;
