@@ -67,7 +67,7 @@ sub build {
 	my $date = $meta->{date};
 	$vars{date} = $date;
 
-	my $fnpat = 'output/%Y/%m/%d-%H.html';
+        my $fnpat = $conf->{entrypattern};
 	$outfn = FictionalSpork::Mods::entry_url($date, $fnpat);
     }
 

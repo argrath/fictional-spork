@@ -21,14 +21,13 @@ sub _set {
 }
 
 sub load {
+    my %default = (
+        atomfile => 'output/atom.xml',
+        entrypattern => 'output/%Y/%m/%d-%H.html',
+        );
     my $fn = _conffn();
     my $data = YAML::Tiny->read($fn);
-    my %c = %{$data->[0]};
-    {
-        if(!defined $c{atomfile}){
-            $c{atomfile} = 'output/atom.xml';
-        }
-    }
+    my %c = (%default, %{$data->[0]});
     $conf = \%c;
 }
 
