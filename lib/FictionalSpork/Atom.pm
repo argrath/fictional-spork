@@ -29,7 +29,7 @@ sub atom {
             );
     }
 
-    $f->to_file('output/atom.xml');
+    $f->to_file($conf->{atomfile});
 }
 
 1;

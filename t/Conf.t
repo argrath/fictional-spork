@@ -25,6 +25,7 @@ BEGIN { use_ok('FictionalSpork::Conf') };
     $ENV{'FS_CONF'} = 'fs.test.yml';
     my $conf = FictionalSpork::Conf::load();
     is($conf->{title}, 'テストタイトル', 'load yml');
+    is($conf->{atomfile}, 'output/atom.xml', 'default atomfile');
 }
 
 {

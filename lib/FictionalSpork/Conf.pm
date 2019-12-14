@@ -16,10 +16,20 @@ sub _conffn {
     return $fn;
 }
 
+sub _set {
+    $conf = shift;
+}
+
 sub load {
     my $fn = _conffn();
     my $data = YAML::Tiny->read($fn);
-    $conf = $data->[0];
+    my %c = %{$data->[0]};
+    {
+        if(!defined $c{atomfile}){
+            $c{atomfile} = 'output/atom.xml';
+        }
+    }
+    $conf = \%c;
 }
 
 sub get {
