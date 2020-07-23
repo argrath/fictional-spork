@@ -8,6 +8,10 @@ use lib 'lib';
 sub create {
     my $name = shift;
 
+    if ($name !~ /\d{8}/){
+        return 1;
+    }
+
     my ($y, $m, $d, $h) = unpack('A4A2A2A2', $name);
 
     mkdir 'entry/' . $y;
@@ -31,6 +35,8 @@ status: draft
 EOF
 ;
     close $f or die;
+
+    return 0;
 }
 
 1;
